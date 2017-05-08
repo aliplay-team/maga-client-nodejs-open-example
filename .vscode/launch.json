@@ -1,0 +1,62 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Test Egg",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceRoot}",
+      "runtimeExecutable": "npm",
+      "windows": {
+        "runtimeExecutable": "npm.cmd"
+      },
+      "runtimeArgs": [
+        "run",
+        "test-local",
+        "--",
+        "--debug"
+      ],
+      "port": 5858
+    },
+    {
+      "name": "Launch Egg",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceRoot}",
+      "runtimeExecutable": "npm",
+      "windows": {
+        "runtimeExecutable": "npm.cmd"
+      },
+      "runtimeArgs": [
+        "run",
+        "dev",
+        "--",
+        "--debug"
+      ],
+      "port": 5858
+    },
+    {
+      "name": "Attach Agent",
+      "type": "node",
+      "request": "attach",
+      "port": 5856
+    },
+    {
+      "name": "Attach Worker",
+      "type": "node",
+      "request": "attach",
+      "restart": true,
+      "port": 10086
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Debug Egg",
+      "configurations": [
+        "Launch Egg",
+        "Attach Agent",
+        "Attach Worker"
+      ]
+    }
+  ]
+}
